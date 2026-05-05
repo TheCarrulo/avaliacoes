@@ -29,11 +29,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "Trying to create Pages site..."
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/pages \
+            -f build_type=workflow 2>&1 && echo "Pages created." || \
+          (echo "Pages already exists, updating..." && \
           gh api \
             --method PUT \
             -H "Accept: application/vnd.github+json" \
             /repos/${{ github.repository }}/pages \
-            -f build_type=workflow || true
+            -f build_type=workflow 2>&1 || true)
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
