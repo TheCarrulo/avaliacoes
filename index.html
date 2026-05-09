@@ -175,6 +175,16 @@
       color: var(--accent);
     }
 
+    .countdown.urgent {
+      color: #c0392b;
+      font-weight: 400;
+    }
+
+    .badge.urgent {
+      border-color: #c0392b;
+      color: #c0392b;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.6rem;
@@ -212,6 +222,7 @@
 <div class="list" id="list"></div>
 
 <footer id="footer"></footer>
+<a href="arquivo.html" style="margin-top:1.5rem;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;opacity:0;animation:fadeUp 0.5s ease 0.8s forwards;">Arquivo de testes →</a>
 
 <script>
   const testes = [
@@ -233,8 +244,9 @@
     let cdText = "";
     let cdClass = "";
     if (diff < 0)       { cdText = "realizado"; }
-    else if (diff === 0){ cdText = "hoje"; cdClass = "soon"; }
-    else if (diff === 1){ cdText = "amanhã"; cdClass = "soon"; }
+    else if (diff === 0){ cdText = "hoje";          cdClass = "urgent"; }
+    else if (diff === 1){ cdText = "amanhã";        cdClass = "urgent"; }
+    else if (diff <= 2) { cdText = `em ${diff} dias`; cdClass = "urgent"; }
     else if (diff <= 7) { cdText = `em ${diff} dias`; cdClass = "soon"; }
     else                { cdText = `em ${diff} dias`; }
 
@@ -251,7 +263,7 @@
         <div class="subject">${t.disciplina}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <div class="badge">Teste</div>
+        <div class="badge ${cdClass}">Teste</div>
         <div class="countdown ${cdClass}">${cdText}</div>
       </div>
     `;
