@@ -25,6 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Stamp last update from latest commit
+        run: |
+          date=$(TZ=Europe/Lisbon git log -1 --format=%cd --date=format-local:%Y-%m-%d)
+          sed -i "s/^const ATUALIZADO = \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\";/const ATUALIZADO = \"${date}\";/" data.js
+          grep -q "^const ATUALIZADO = \"${date}\";" data.js
+          echo "Stamped ATUALIZADO=${date}"
+
       - name: Enable GitHub Pages via API
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
