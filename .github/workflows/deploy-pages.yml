@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,6 +24,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # git log -1 only needs the commit being deployed
+          fetch-depth: 1
 
       - name: Stamp last update from latest commit
         run: |
@@ -31,23 +34,6 @@ jobs:
           sed -i "s/^const ATUALIZADO = \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\";/const ATUALIZADO = \"${date}\";/" data.js
           grep -q "^const ATUALIZADO = \"${date}\";" data.js
           echo "Stamped ATUALIZADO=${date}"
-
-      - name: Enable GitHub Pages via API
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Trying to create Pages site..."
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            /repos/${{ github.repository }}/pages \
-            -f build_type=workflow 2>&1 && echo "Pages created." || \
-          (echo "Pages already exists, updating..." && \
-          gh api \
-            --method PUT \
-            -H "Accept: application/vnd.github+json" \
-            /repos/${{ github.repository }}/pages \
-            -f build_type=workflow 2>&1 || true)
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
