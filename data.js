@@ -17,6 +17,7 @@ const TESTES = [
   { data: "2026-10-20", disciplina: "Ciências", tipo: "Teste" },
   { data: "2026-10-21", disciplina: "Matemática", tipo: "Teste" },
   { data: "2026-11-03", disciplina: "História", tipo: "Teste" },
+  { data: "2026-11-11", disciplina: "Português", tipo: "Teste escrita" },
   { data: "2026-11-18", disciplina: "Português", tipo: "Teste" },
   { data: "2026-11-19", disciplina: "Inglês", tipo: "Teste" },
   { data: "2026-11-23", disciplina: "História", tipo: "Teste" },
