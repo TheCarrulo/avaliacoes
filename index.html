@@ -36,7 +36,7 @@
     header {
       width: 100%;
       max-width: 540px;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.2rem;
       opacity: 0;
       animation: fadeUp 0.6s ease forwards;
     }
@@ -199,14 +199,238 @@
       animation: fadeUp 0.5s ease 0.7s forwards;
     }
 
+    .calendar {
+      width: 100%;
+      max-width: 540px;
+      margin-bottom: 3.2rem;
+      opacity: 0;
+      animation: fadeUp 0.55s ease 0.08s forwards;
+    }
+
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .cal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.1;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    .cal-btn {
+      font-family: inherit;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 5px 12px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .cal-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .cal-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .cal-frame {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--line);
+    }
+
+    .cal-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 1px;
+      table-layout: fixed;
+      background: var(--line);
+    }
+
+    .cal-table th {
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0.45rem 0.1rem;
+    }
+
+    .cal-table td {
+      background: var(--card);
+      vertical-align: top;
+      height: 4.6rem;
+      padding: 0.32rem 0.26rem 0.38rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .cal-table td.outside {
+      background: #f3f1ed;
+    }
+
+    .cal-table td.has-test {
+      background: #e8f0fb;
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .cal-table td.today {
+      box-shadow: inset 0 0 0 1.5px var(--accent);
+    }
+
+    .cal-table td.today.has-test {
+      box-shadow: inset 3px 0 0 var(--accent), inset 0 0 0 1.5px var(--accent);
+    }
+
+    .cal-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--ink);
+      width: 1.4rem;
+      height: 1.4rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.18rem;
+    }
+
+    .cal-table td.today .cal-num {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+    }
+
+    .cal-test + .cal-test {
+      margin-top: 0.32rem;
+      padding-top: 0.28rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .cal-test .cal-subject {
+      font-size: 0.62rem;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .cal-test .cal-tipo {
+      margin-top: 1px;
+      font-size: 0.5rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.25;
+      color: var(--accent);
+    }
+
+    /* On a phone the seven columns are too narrow for subject names.
+       The grid stays; each week's tests are repeated in a full-width row. */
+    .cal-notes { display: none; }
+
+    .cal-note {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      padding: 0.32rem 0;
+    }
+
+    .cal-note + .cal-note { border-top: 1px solid var(--line); }
+
+    .cal-note-day {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      line-height: 1;
+      color: var(--accent);
+      min-width: 1.45rem;
+    }
+
+    .cal-note-text {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.12rem 0.45rem;
+      min-width: 0;
+    }
+
+    .cal-note .cal-subject {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .cal-note .cal-tipo {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      color: var(--accent);
+    }
+
+    .cal-empty {
+      margin-top: 0.85rem;
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    @media (max-width: 640px) {
+      .cal-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "title title" "prev next";
+        row-gap: 0.7rem;
+        column-gap: 0.5rem;
+      }
+      .cal-title { grid-area: title; font-size: 1.4rem; }
+      #cal-prev { grid-area: prev; justify-self: start; }
+      #cal-next { grid-area: next; justify-self: end; }
+
+      .cal-test { display: none; }
+      .cal-notes { display: table-row; }
+      .cal-table td { height: 2.45rem; padding: 0.28rem 0.08rem; }
+      .cal-notes td {
+        height: auto;
+        padding: 0.1rem 0.75rem 0.2rem;
+        background: #f4f7fc;
+      }
+      .cal-num { margin-bottom: 0; }
+    }
+
     @media (max-width: 420px) {
+      body { padding-left: 0.7rem; padding-right: 0.7rem; }
       h1 { font-size: 1.7rem; }
       .item { padding: 1.1rem 1.2rem; gap: 1rem; }
+      .cal-table th { font-size: 0.5rem; letter-spacing: 0.04em; padding: 0.4rem 0; }
+      .cal-num { font-size: 0.95rem; width: 1.25rem; height: 1.25rem; }
+      .cal-btn { font-size: 0.55rem; padding: 4px 8px; letter-spacing: 0.08em; }
+      .cal-note .cal-subject { font-size: 0.82rem; }
     }
   </style>
   <!-- Google Analytics -->
@@ -230,6 +454,16 @@
   </div>
   <div class="divider"></div>
 </header>
+
+<section class="calendar" id="calendar" aria-labelledby="cal-title">
+  <div class="cal-nav">
+    <button type="button" class="cal-btn" id="cal-prev" aria-label="Mês anterior">&larr; Anterior</button>
+    <h2 class="cal-title" id="cal-title" aria-live="polite"></h2>
+    <button type="button" class="cal-btn" id="cal-next" aria-label="Mês seguinte">Seguinte &rarr;</button>
+  </div>
+  <div class="cal-frame" id="cal-frame"></div>
+  <p class="cal-empty" id="cal-empty" hidden>Sem avaliações neste mês.</p>
+</section>
 
 <div class="list" id="list"></div>
 
@@ -281,6 +515,167 @@
 
   document.getElementById("footer").textContent =
     "Atualizado em " + textoAtualizado();
+
+  // Monday-first month grid. Short weekday labels come from the pt-PT long
+  // names (Intl "short" is too wide for a seven-column header).
+  const WEEKDAY_SHORT = {
+    "segunda-feira": "seg",
+    "terça-feira": "ter",
+    "quarta-feira": "qua",
+    "quinta-feira": "qui",
+    "sexta-feira": "sex",
+    "sábado": "sáb",
+    "domingo": "dom",
+  };
+
+  const weekdayHeaders = Array.from({ length: 7 }, (_, i) => {
+    const ref = new Date(2024, 0, 1 + i); // 2024-01-01 is a Monday
+    const longName = ref.toLocaleDateString("pt-PT", { weekday: "long" });
+    return WEEKDAY_SHORT[longName] || longName.slice(0, 3);
+  });
+
+  const testsByIso = new Map();
+  TESTES.forEach(teste => {
+    const bucket = testsByIso.get(teste.data);
+    if (bucket) bucket.push(teste);
+    else testsByIso.set(teste.data, [teste]);
+  });
+
+  const calTitle = document.getElementById("cal-title");
+  const calFrame = document.getElementById("cal-frame");
+  const calEmpty = document.getElementById("cal-empty");
+  const view = { year: hoje.getFullYear(), month: hoje.getMonth() };
+
+  function isoDate(year, monthIndex, day) {
+    const month = String(monthIndex + 1).padStart(2, "0");
+    const dayText = String(day).padStart(2, "0");
+    return year + "-" + month + "-" + dayText;
+  }
+
+  function shiftMonth(delta) {
+    const next = new Date(view.year, view.month + delta, 1);
+    view.year = next.getFullYear();
+    view.month = next.getMonth();
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const monthLabel = new Date(view.year, view.month, 1)
+      .toLocaleDateString("pt-PT", { month: "long", year: "numeric" });
+    calTitle.textContent = monthLabel;
+
+    const firstWeekday = new Date(view.year, view.month, 1).getDay();
+    const startPad = (firstWeekday + 6) % 7;
+    const daysInMonth = new Date(view.year, view.month + 1, 0).getDate();
+    const weeks = Math.ceil((startPad + daysInMonth) / 7);
+
+    const table = document.createElement("table");
+    table.className = "cal-table";
+    table.setAttribute("aria-label", monthLabel);
+
+    const thead = document.createElement("thead");
+    const headRow = document.createElement("tr");
+    weekdayHeaders.forEach(name => {
+      const th = document.createElement("th");
+      th.scope = "col";
+      th.textContent = name;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    let testCount = 0;
+
+    for (let week = 0; week < weeks; week++) {
+      const row = document.createElement("tr");
+      const weekTests = [];
+      for (let weekday = 0; weekday < 7; weekday++) {
+        const dayNum = week * 7 + weekday - startPad + 1;
+        const cell = document.createElement("td");
+
+        if (dayNum < 1 || dayNum > daysInMonth) {
+          cell.className = "outside";
+          cell.setAttribute("aria-hidden", "true");
+          row.appendChild(cell);
+          continue;
+        }
+
+        const key = isoDate(view.year, view.month, dayNum);
+        const tests = testsByIso.get(key) || [];
+        const isToday = view.year === hoje.getFullYear()
+          && view.month === hoje.getMonth()
+          && dayNum === hoje.getDate();
+
+        cell.className = [
+          tests.length ? "has-test" : "",
+          isToday ? "today" : "",
+        ].filter(Boolean).join(" ");
+        if (isToday) cell.setAttribute("aria-current", "date");
+
+        const num = document.createElement("div");
+        num.className = "cal-num";
+        num.textContent = String(dayNum);
+        cell.appendChild(num);
+
+        tests.forEach(teste => {
+          testCount += 1;
+          weekTests.push({ dayNum, teste });
+          const block = document.createElement("div");
+          block.className = "cal-test";
+          const subject = document.createElement("div");
+          subject.className = "cal-subject";
+          subject.textContent = teste.disciplina;
+          const tipo = document.createElement("div");
+          tipo.className = "cal-tipo";
+          tipo.textContent = teste.tipo || "Teste";
+          block.appendChild(subject);
+          block.appendChild(tipo);
+          cell.appendChild(block);
+        });
+
+        row.appendChild(cell);
+      }
+      tbody.appendChild(row);
+
+      if (weekTests.length) {
+        const notes = document.createElement("tr");
+        notes.className = "cal-notes";
+        const notesCell = document.createElement("td");
+        notesCell.colSpan = 7;
+        weekTests.forEach(({ dayNum, teste }) => {
+          const note = document.createElement("div");
+          note.className = "cal-note";
+          const day = document.createElement("span");
+          day.className = "cal-note-day";
+          day.textContent = String(dayNum);
+          const text = document.createElement("span");
+          text.className = "cal-note-text";
+          const subject = document.createElement("span");
+          subject.className = "cal-subject";
+          subject.textContent = teste.disciplina;
+          const tipo = document.createElement("span");
+          tipo.className = "cal-tipo";
+          tipo.textContent = teste.tipo || "Teste";
+          text.appendChild(subject);
+          text.appendChild(tipo);
+          note.appendChild(day);
+          note.appendChild(text);
+          notesCell.appendChild(note);
+        });
+        notes.appendChild(notesCell);
+        tbody.appendChild(notes);
+      }
+    }
+
+    table.appendChild(tbody);
+    calFrame.replaceChildren(table);
+    calEmpty.hidden = testCount > 0;
+  }
+
+  document.getElementById("cal-prev").addEventListener("click", () => shiftMonth(-1));
+  document.getElementById("cal-next").addEventListener("click", () => shiftMonth(1));
+  renderCalendar();
 </script>
 
 </body>
