@@ -1,7 +1,7 @@
 // Shared test list for index.html and arquivo.html.
 // Month name and weekday are derived in pt-PT; do not store them here.
 // ATUALIZADO is replaced at deploy from `git log -1` (see deploy-pages.yml).
-const ATUALIZADO = "2026-11-12";
+const ATUALIZADO = "2026-11-13";
 
 const TESTES = [
   { data: "2026-04-18", disciplina: "Ciências", tipo: "Teste" },
@@ -17,11 +17,12 @@ const TESTES = [
   { data: "2026-10-20", disciplina: "Ciências", tipo: "Teste" },
   { data: "2026-10-21", disciplina: "Matemática", tipo: "Teste" },
   { data: "2026-11-03", disciplina: "História", tipo: "Teste" },
-  { data: "2026-11-19", disciplina: "Inglês", tipo: "Teste" },
+  { data: "2026-11-18", disciplina: "Português", tipo: "Teste" },
   { data: "2026-11-23", disciplina: "História", tipo: "Teste" },
-  { data: "2026-11-24", disciplina: "Português", tipo: "Teste" },
   { data: "2026-11-25", disciplina: "Matemática", tipo: "Teste" },
+  { data: "2026-11-26", disciplina: "Inglês", tipo: "Teste" },
   { data: "2026-11-27", disciplina: "Ciências", tipo: "Teste" },
+  { data: "2026-12-02", disciplina: "Português", tipo: "Apresentação Oral" },
 ];
 
 function parseData(iso) {
